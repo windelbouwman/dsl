@@ -1,0 +1,16 @@
+Program: declarations*=Declaration;
+Declaration: Variable | Function;
+Variable: 'var' typ=Type name=ID ';';
+Type: 's8' | 'u8' | 's16' | 'u16' | 's32' | 'u32';
+Function: name=ID '{' statements*=Statement '}';
+Statement: Assignment;
+Assignment: variable_name=ID '=' value=Expression ';' ;
+Expression: op=Term (op=AddOp op=Term)*;
+Term: op=Factor ( op=MulOp op=Factor)*;
+AddOp: '+' | '-';
+MulOp: '*' | '/';
+Factor: Constant | VariableRef;
+Constant: value=INT;
+VariableRef: name=ID;
+// Binop: Expression '+' Expression;
+
